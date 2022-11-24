@@ -1,5 +1,5 @@
 #PLEASE WRITE THE GITHUB URL BELOW!
-#
+# https://github.com/Sungrae4445/OSS_TermProject2.git
 
 import sys
 
