@@ -2,9 +2,12 @@
 # https://github.com/Sungrae4445/OSS_TermProject2.git
 
 import sys
+import numpy as np
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, precision_score, recall_score
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
 from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import train_test_split
@@ -39,9 +42,13 @@ def random_forest_train_test(x_train, x_test, y_train, y_test):
 
 def svm_train_test(x_train, x_test, y_train, y_test):
 	svm_cls=SVC()
-	svm_cls.fit(x_train, y_train)
- 
-	return accuracy_score(y_test,svm_cls.predict(x_test)),precision_score(y_test,svm_cls.predict(x_test)),recall_score(y_test,svm_cls.predict(x_test))
+	svm_pipe= make_pipeline(
+		StandardScaler(),
+		SVC()
+	)
+	svm_pipe.fit(x_train, y_train)
+	
+	return accuracy_score(y_test,svm_pipe.predict(x_test)),precision_score(y_test,svm_pipe.predict(x_test)),recall_score(y_test,svm_pipe.predict(x_test))
 
 
 def print_performances(acc, prec, recall):
@@ -71,6 +78,7 @@ if __name__ == '__main__':
 	print ("\nRandom Forest Performances")
 	print_performances(acc, prec, recall)
 
+	
 	acc, prec, recall = svm_train_test(x_train, x_test, y_train, y_test)
 	print ("\nSVM Performances")
 	print_performances(acc, prec, recall)
