@@ -3,7 +3,8 @@
 
 import sys
 import pandas as pd
-import sklearn 
+from sklearn.metrics import accuracy_score, precision_score, recall_score
+from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import train_test_split
 
 def load_dataset(dataset_path):
@@ -23,7 +24,10 @@ def split_dataset(dataset_df, testset_size):
     return X_train,X_test,y_train,y_test
 
 def decision_tree_train_test(x_train, x_test, y_train, y_test):
-	#To-Do: Implement this function
+	dt_cls=DecisionTreeClassifier()
+	dt_cls.fit(x_train, y_train)
+ 
+	return accuracy_score(y_test,dt_cls.predict(x_test)),precision_score(y_test,dt_cls.predict(x_test)),recall_score(y_test,dt_cls.predict(x_test))
 
 # def random_forest_train_test(x_train, x_test, y_train, y_test):
 # 	#To-Do: Implement this function
