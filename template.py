@@ -2,9 +2,11 @@
 # https://github.com/Sungrae4445/OSS_TermProject2.git
 
 import sys
+import pandas as pd
+import sklearn 
 
 def load_dataset(dataset_path):
-	#To-Do: Implement this function
+	return pd.read_csv(dataset_path)
 
 def dataset_stat(dataset_df):	
 	#To-Do: Implement this function
