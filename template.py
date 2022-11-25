@@ -3,6 +3,7 @@
 
 import sys
 import pandas as pd
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, precision_score, recall_score
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import train_test_split
@@ -29,8 +30,11 @@ def decision_tree_train_test(x_train, x_test, y_train, y_test):
  
 	return accuracy_score(y_test,dt_cls.predict(x_test)),precision_score(y_test,dt_cls.predict(x_test)),recall_score(y_test,dt_cls.predict(x_test))
 
-# def random_forest_train_test(x_train, x_test, y_train, y_test):
-# 	#To-Do: Implement this function
+def random_forest_train_test(x_train, x_test, y_train, y_test):
+	dt_cls=RandomForestClassifier()
+	dt_cls.fit(x_train, y_train)
+ 
+	return accuracy_score(y_test,dt_cls.predict(x_test)),precision_score(y_test,dt_cls.predict(x_test)),recall_score(y_test,dt_cls.predict(x_test))
 
 # def svm_train_test(x_train, x_test, y_train, y_test):
 # 	#To-Do: Implement this function
